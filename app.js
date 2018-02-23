@@ -10,42 +10,21 @@ function handleRequest(req, res) {
 
 	switch (path) {
 		case "/":
-		return rootPage(res)
+		return readFile(res, path)
 
 		case "/movies":
-		return moviesPage(res)
+		return readFile(res, path)
 
 		case "/framework":
-		return frameworkPage(res)
+		return readFile(res, path)
 
 		case "/foods":
-		return foodsPage(res)
+		return readFile(res, path)
 	}
 }
 
-function rootPage(res) {
-	fs.readFile(__dirname + "/root.html", function(err, data) {
-		res.writeHead(200, { "Content-Type": "text/html"});
-		res.end(data);
-	})
-}
-
-function moviesPage(res) {
-	fs.readFile(__dirname + "/movies.html", function(err, data) {
-		res.writeHead(200, { "Content-Type": "text/html"});
-		res.end(data);
-	})
-}
-
-function frameworkPage(res) {
-	fs.readFile(__dirname + "/framework.html", function(err, data) {
-		res.writeHead(200, { "Content-Type": "text/html"});
-		res.end(data);
-	})
-}
-
-function foodsPage(res) {
-	fs.readFile(__dirname + "/foods.html", function(err, data) {
+function readFile(res, page) {
+	fs.readFile(__dirname + page, function(err, data) {
 		res.writeHead(200, { "Content-Type": "text/html"});
 		res.end(data);
 	})
